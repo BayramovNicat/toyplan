@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\models;
+use common\models\User;
 
 use Yii;
 
@@ -78,5 +79,10 @@ class Service extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return Category::find()->where(['id'=>$this->category_id])->one();
+    }
+    
+    public function getOwnerUser()
+    {
+        return User::find()->where(['id'=>$this->owner])->one();
     }
 }

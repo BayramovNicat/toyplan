@@ -80,7 +80,7 @@ class LoginForm extends Model
      */
     protected function getUser()
     {
-        if ($this->_user === false) {
+        if ($this->_user === null) {
             //Находим пользователя в БД по логину или эл.почте
             $this->_user = User::findByEmail($this->email);
             //Проверяем права доступа, если нет, то делаем вид,

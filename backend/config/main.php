@@ -8,10 +8,15 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'Toyplan Admin',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'gii' => [
+            'class' => \yii\gii\Module::className(),
+            'allowedIPs' => ['*']
+        ],
        'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ]
