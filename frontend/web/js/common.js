@@ -1,3 +1,20 @@
+$(document).ready(function(){
+   
+    $('.card-image').imagesLoaded( function() {
+        $('.card-image').imagefill();
+    });
+    
+    $('#media').imagesLoaded( function() {
+        $('.grid').masonry({
+          // options
+          itemSelector: '.grid-item',
+          columnWidth: '.grid-item'
+        });
+        $('.grid-item a').imagefill();
+        $( '.swipebox' ).swipebox();
+    });
+});
+
 /*************
 *****MENU*****
 **************/
@@ -440,6 +457,15 @@ $( "#datepicker" ).datepicker({
         $('#calendar .plan-content-input').text(dt.getDate()+' '+month_lg[dt.getMonth()]+' '+dt.getFullYear());
     },
 });
+$( ".datepicker" ).datepicker({
+    nextText: '<i class="zmdi zmdi-hc-2x zmdi-long-arrow-right"></i>',
+    prevText: '<i class="zmdi zmdi-hc-2x zmdi-long-arrow-left"></i>',
+    dayNamesMin: [ "B", "Be", "Ça", "Ç", "Ca", "C", "Ş" ],
+    monthNames: [ "Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyavr", "Noyabr", "Dekabr" ],
+    defaultDate: null,
+    setDate: null,
+    minDate: new Date(),
+});
 $('#datepicker').find(".ui-datepicker-current-day").removeClass("ui-datepicker-current-day");
 
 $(document).on('click','.ih-item .buttons .zmdi-check',function(){
@@ -584,4 +610,123 @@ $('.filter_categories li a').on('click', function(){
 $('#select-min-price').on('click', function(){
     $('#filter_form input[name=max-price]').val($('#filter_price_structure .range-field .value').text());
     return false;
+});
+
+
+function initGoogleMap() {
+    var map_obj = $('#google-map');
+    var longlat = map_obj.data('longlat').split(',')
+    var pyrmont = new google.maps.LatLng(longlat[0],longlat[1]);
+    var styleArray =[
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#444444"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#46bcec"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    }
+];
+  var map = new google.maps.Map(document.getElementById('google-map'), {
+    center: pyrmont,
+    zoom: 16,
+    styles: styleArray,
+    scrollwheel: false
+  });
+
+  // Specify location, radius and place types for your Places API search.
+ var marker = new google.maps.Marker({
+    map: map,
+    position: pyrmont,
+    title: map_obj.data('name')
+  });
+  
+  
+
+  // Create the PlaceService and send the request.
+  // Handle the callback with an anonymous function.
+  
+
+    
+}
+
+google.maps.event.addDomListener(window, 'load', initGoogleMap);
+
+
+
+
+$('.tabs-content:not(.active)').height('0');
+$('.tabs .tab:not(.disabled) a').click(function(){
+    $('.tabs-content.active').height('0').removeClass('active');
+    $($(this).data('target')).height('auto').addClass('active');
 });

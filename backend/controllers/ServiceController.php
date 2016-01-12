@@ -4,10 +4,12 @@ namespace backend\controllers;
 
 use Yii;
 use frontend\models\Service;
+use frontend\models\Media;
 use backend\models\ServiceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\VarDumper;
 
 /**
  * ServiceController implements the CRUD actions for Service model.
@@ -60,13 +62,16 @@ class ServiceController extends Controller
      */
     public function actionCreate()
     {
+        session_start();
+        $_SESSION['Service']['id'] = (Service::find()->max('id'))+1;
         $model = new Service();
-
+        $media = Media::find()->where(['service_id'=>$_SESSION['Service']['id']])->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'media' => $media
             ]);
         }
     }
@@ -80,12 +85,14 @@ class ServiceController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $media = Media::find()->where(['service_id'=>$id])->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'media' => $media
             ]);
         }
     }

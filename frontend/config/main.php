@@ -30,6 +30,11 @@ return [
                     'route' => 'category/index',
                     'suffix' => '/'
                 ],
+                [
+                    'pattern' => '<catslug>/<slug>',
+                    'route' => 'service/index',
+                    'suffix' => '/'
+                ],
 
                 //module
                 '<module:\w+>/<controller:\w+>/<action:[\w\-]+>'=>'<module>/<controller>/<action>',

@@ -43,3 +43,6 @@ environments/            contains environment-based overrides
 tests                    contains various tests for the advanced application
     codeception/         contains tests developed with Codeception PHP Testing Framework
 ```
+
+
+kartik file upload widget fnComplete $btnDelete.attr('data-id',e.responseJSON);

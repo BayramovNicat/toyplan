@@ -9,15 +9,18 @@ use Yii;
  * This is the model class for table "service".
  *
  * @property integer $id
- * @property string $category_id
+ * @property integer $category_id
  * @property integer $owner
  * @property string $can_reserve
  * @property string $name
  * @property string $slug
  * @property string $phone
+ * @property string $mobil
  * @property string $img
  * @property string $description
  * @property string $socials
+ * @property string $adress
+ * @property string $longlat
  * @property string $status
  */
 class Service extends \yii\db\ActiveRecord
@@ -29,18 +32,6 @@ class Service extends \yii\db\ActiveRecord
     {
         return 'service';
     }
-    
-    public function behaviors()
-    {
-    	return [
-    		'slug' => [
-    			'class' => 'common\behaviors\Slug',
-    			'in_attribute' => 'name',
-    			'out_attribute' => 'slug',
-    			'translit' => true
-    		]
-    	];
-    }
 
     /**
      * @inheritdoc
@@ -48,11 +39,11 @@ class Service extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'owner', 'name', 'phone', 'description'], 'required'],
-            [['owner'], 'integer'],
+            [['category_id', 'owner', 'can_reserve', 'name', 'slug', 'phone', 'mobil', 'img', 'description', 'socials', 'adress', 'longlat'], 'required'],
+            [['category_id', 'owner'], 'integer'],
             [['can_reserve', 'description', 'socials', 'status'], 'string'],
-            [['category_id', 'name', 'slug', 'img'], 'string', 'max' => 100],
-            [['phone'], 'string', 'max' => 20]
+            [['name', 'slug', 'img'], 'string', 'max' => 100],
+            [['phone', 'mobil', 'adress', 'longlat'], 'string', 'max' => 255]
         ];
     }
 
@@ -63,15 +54,18 @@ class Service extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category id',
+            'category_id' => 'Category ID',
             'owner' => 'Owner',
             'can_reserve' => 'Can Reserve',
             'name' => 'Name',
             'slug' => 'Slug',
             'phone' => 'Phone',
+            'mobil' => 'Mobil',
             'img' => 'Img',
             'description' => 'Description',
             'socials' => 'Socials',
+            'adress' => 'Adress',
+            'longlat' => 'Longlat',
             'status' => 'Status',
         ];
     }
@@ -79,6 +73,11 @@ class Service extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return Category::find()->where(['id'=>$this->category_id])->one();
+    }
+    
+    public function getMedia()
+    {
+        return Media::find()->where(['service_id'=>$this->id])->all();
     }
     
     public function getOwnerUser()

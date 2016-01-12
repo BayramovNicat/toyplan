@@ -9,6 +9,11 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\helpers\VarDumper;
+use yii\imagine\Image;
+use Imagine\Gd;
+use Imagine\Image\Box;
+use Imagine\Image\BoxInterface;
 /**
  * MediaController implements the CRUD actions for Media model.
  */
@@ -96,36 +101,36 @@ class MediaController extends Controller
 
     public function actionFileUpload()
     {
-        $filename = 'file';
+        session_start();
         $this->enableCsrfValidation = false;
-        $model = new Media;
-        $image = UploadedFile::getInstance($modell, 'img');
-        print_r($image);
-        // if ($model->load(Yii::$app->request->post())) {
-        //     // get the uploaded file instance. for multiple file uploads
-        //     // the following data will return an array
-        //     $image = UploadedFile::getInstance($model, 'image');
-
-        //     // store the source file name
-        //     $model->filename = $image->name;
-        //     $ext = end((explode(".", $image->name)));
-
-        //     // generate a unique file name
-        //     $model->avatar = Yii::$app->security->generateRandomString().".{$ext}";
-
-        //     // the path to save file, you can set an uploadPath
-        //     // in Yii::$app->params (as used in example below)
-        //     $path = Yii::$app->params['uploadPath'] . $model->avatar;
-
-        //     if($model->save()){
-        //         $image->saveAs($path);
-        //         return $this->redirect(['view', 'id'=>$model->_id]);
-        //     } else {
-        //         // error in saving model
-        //     }
-        // }
+        $uploaddir = Yii::getAlias('@frontend/web/uploads/services/');
+        $tmp_image_name = $_FILES['service_img']['tmp_name'];
+        $image_name = (substr(sha1(basename($_FILES['service_img']['name']).time().rand(1000, 9999)),0,7)).basename($_FILES['service_img']['name']);
+        move_uploaded_file($tmp_image_name,$uploaddir.$image_name);
+        Image::getImagine()->open(Yii::getAlias('@frontend/web/uploads/services/'.$image_name))->thumbnail(new Box(500, 500))->save(Yii::getAlias('@frontend/web/uploads/services/min/'.$image_name) , ['quality' => 90]);
         
+        $model = new Media();
+        $model->service_id = $_SESSION['Service']['id'];
+        $model->img = $image_name;
+        $model->type = 'img';
+        $model->created_date = date('Y-m-d h:m:s');
+        $model->status = '1';
+        $model->save();
+        
+        return $model->getPrimaryKey();
     }
+    
+    public function actionFileDelete()
+    {
+        if($_POST['id']){
+            $media = Media::find($_POST['id'])->one();
+            $mediaName = $media->img;
+            $media->delete();
+            unlink(Yii::getAlias('@frontend/web/uploads/services/').$mediaName);
+            unlink(Yii::getAlias('@frontend/web/uploads/services/min/').$mediaName);
+        }
+    }
+    
     /**
      * Deletes an existing Media model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

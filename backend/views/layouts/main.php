@@ -191,7 +191,7 @@ AppAsset::register($this);
         <div id="page-wrapper">
 
             <div class="container-fluid">
-
+                
                 <?=$content?>
 
             </div>

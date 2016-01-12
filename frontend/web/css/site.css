@@ -1136,3 +1136,216 @@ form button{
 #filter_form{
   display: none;
 }
+
+.card.large .card-content{
+  height: auto;
+}
+
+.card.large, .card.small{
+  height: auto;
+}
+
+.card.large > .card-image{
+  height: 330px;
+}
+
+.card.small > .card-image{
+  height: 200px;
+}
+
+#media .grid-item img{
+  width: 100%;
+}
+
+#media .grid-item{
+  margin-bottom: 20px;
+  height: 260px;
+  overflow: hidden;
+}
+
+#media .grid-item .swipebox{
+  display: inline-block;
+  width: 100%;
+  height: 200px;
+}
+
+#media .media-social{
+  margin: 0px;
+}
+
+#media .media-social li{
+  display: inline-block;
+  font-size: 26px;
+  margin: 0 5px;
+}
+
+.media-social .facebook a{
+  color: #325C94;
+}
+
+.media-social .google-plus a{
+  color: #EA3032;
+}
+
+.media-social .twitter a{
+  color: #00ABDC;
+}
+
+.tabs{
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.tabs .tab a:hover{
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.tabs .tab.disabled a{
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.tabs .tab a{
+  color: #fff;
+}
+
+.tabs .indicator {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.breadcrumb{
+  margin-top: -15px;
+  background: #d0ad67;
+  font-size: 18px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.breadcrumb li{
+  color: #fff;
+  display: inline-block;
+  padding: 20px 0 20px 20px;
+}
+
+.breadcrumb li a{
+  color: rgba(255,255,255,0.7);
+  position: relative;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.breadcrumb li a:hover{
+  color: #fff;
+}
+
+.breadcrumb li a:after {
+    content: '\f2fb';
+    vertical-align: top;
+    display: inline-block;
+    font-family: 'Material-Design-Iconic-Font';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    position: absolute;
+    top: -8px;
+    right: -16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.services-card > .card-image:after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+99 */
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 99%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+.services-card .datepicker.small{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+.services-card .datepicker.small .ui-datepicker-inline{
+  -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.81);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.81);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.81);
+  padding-bottom: 4px;
+}
+.services-card  .datepicker.small .ui-datepicker-inline td a{
+  
+    width: 32px;
+    height: 32px;
+    padding: 2px 4px;
+}
+
+.services-card .datepicker.small .ui-datepicker-inline tbody td{
+  padding: 0px 5px;
+}
+
+.services-card  .services-card-name{
+  z-index: 1;
+  font-size: 50px;
+  bottom: 20px !important;
+  font-weight: 400;
+}
+
+.services-card  .btn-floating {
+  
+}
+
+.card-submenu .datepicker .ui-datepicker-inline td a{
+    width: 40px;
+    height: 40px;
+    padding: 6px 4px;
+}
+
+.card-submenu .datepicker .ui-datepicker-inline tbody td{
+  padding: 0px;
+}
+
+.services-card  .services-card-category{
+  z-index: 1;
+}
+
+.tab a{
+  cursor: pointer;
+}
+
+.tabs-content{
+  overflow: hidden;
+}
+
+#map{
+  font-size: 18px;
+  text-align: center;
+}
+
+.menyu .card-image:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 99%, rgba(0,0,0,0.65) 100%);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+}
+
+.menyu .card-title{
+  z-index: 1;
+}
+
+.menyu li{
+  list-style: none;
+}

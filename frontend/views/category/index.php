@@ -27,7 +27,7 @@ $this->title = $category->name;
                     </div>
                     <div class="buttons">
                         <a class="add_btn btn-floating btn-large waves-effect waves-light" data-name="<?=$service->name?>" data-id="<?=$service->id?>" data-category="<?=$service->category->slug?>"><i class="zmdi zmdi-hc-3x zmdi-plus"></i></a>
-                        <a href="/<?=$service->category->slug?>/<?=$service->slug?>" class="view_btn btn-floating btn-large waves-effect waves-light"><i class="zmdi zmdi-hc-3x zmdi-search"></i></a>
+                        <a href="/<?=$service->category->slug?>/<?=$service->slug?>/" class="view_btn btn-floating btn-large waves-effect waves-light"><i class="zmdi zmdi-hc-3x zmdi-search"></i></a>
                     </div>
                 </div>
             </div>

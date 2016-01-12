@@ -8,8 +8,7 @@ use Yii;
  * This is the model class for table "media".
  *
  * @property integer $id
- * @property string $service_slug
- * @property string $name
+ * @property integer $service_id
  * @property string $img
  * @property string $video
  * @property string $type
@@ -32,10 +31,11 @@ class Media extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['service_slug', 'name', 'img', 'video', 'type', 'status'], 'required'],
+            [['service_id', 'img', 'type', 'status'], 'required'],
+            [['service_id'], 'integer'],
             [['type', 'status'], 'string'],
             [['created_date'], 'safe'],
-            [['service_slug', 'name', 'img', 'video'], 'string', 'max' => 100]
+            [['img'], 'string', 'max' => 100]
         ];
     }
 
@@ -46,8 +46,7 @@ class Media extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'service_slug' => 'Service Slug',
-            'name' => 'Name',
+            'service_id' => 'Service ID',
             'img' => 'Img',
             'video' => 'Video',
             'type' => 'Type',

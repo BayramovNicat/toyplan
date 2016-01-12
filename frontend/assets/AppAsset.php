@@ -21,15 +21,21 @@ class AppAsset extends AssetBundle
         'css/materialize.min.css',
         'css/material-design-iconic-font.min.css',
         'css/slick.css',
+        'css/swipebox.css',
         'css/site.css',
-        'css/media.css',
+        'css/media.css'
     ];
     public $js = [
         'js/materialize.min.js',
         'js/jquery-ui.min.js',
+        'js/imagesloaded.pkgd.min.js',
+        'js/jquery-imagefill.js',
+        'js/masonry.pkgd.min.js',
         'js/slick.min.js',
+        'js/jquery.swipebox.js',
         'js/openbox-img.js',
-        'js/common.js',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCOwIpjOGQD_gWkJshFfWKWltMuxbIMGtw&libraries=places',
+        'js/common.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
